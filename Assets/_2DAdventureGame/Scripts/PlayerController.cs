@@ -4,24 +4,35 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     public InputAction MoveAction;
-    Rigidbody2D rigidbody2d;
-    Vector2 move;
+    public InputAction LaunchAction;
 
     public float speed = 3.0f;
     public int maxHealth = 5;
-
-    // Властивість лише для читання для безпечного доступу з інших скриптів
-    public int health { get { return currentHealth; } }
-    int currentHealth;
-
     public float timeInvincible = 2.0f;
+    public GameObject projectilePrefab;
+
+    public int health { get { return currentHealth; } }
+
+    Rigidbody2D rigidbody2d;
+    Animator animator;
+
+    Vector2 move;
+    Vector2 moveDirection = new Vector2(1, 0);
+    int currentHealth;
     bool isInvincible;
     float damageCooldown;
+
+    // Таймер затримки між пострілами (ДЗ)
+    public float timeBetweenShots = 0.5f;
+    float shotTimer;
 
     void Start()
     {
         MoveAction.Enable();
+        LaunchAction.Enable();
+
         rigidbody2d = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         currentHealth = maxHealth;
     }
 
@@ -29,7 +40,20 @@ public class PlayerController : MonoBehaviour
     {
         move = MoveAction.ReadValue<Vector2>();
 
-        // Відлік таймера невразливості
+        if (!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))
+        {
+            moveDirection.Set(move.x, move.y);
+            moveDirection.Normalize();
+        }
+
+        if (animator != null)
+        {
+            animator.SetFloat("Look X", moveDirection.x);
+            animator.SetFloat("Look Y", moveDirection.y);
+            animator.SetFloat("Speed", move.magnitude);
+        }
+
+        // Таймер невразливості
         if (isInvincible)
         {
             damageCooldown -= Time.deltaTime;
@@ -37,6 +61,19 @@ public class PlayerController : MonoBehaviour
             {
                 isInvincible = false;
             }
+        }
+
+        // Оновлення затримки пострілу
+        if (shotTimer > 0)
+        {
+            shotTimer -= Time.deltaTime;
+        }
+
+        // Постріл на клавішу C
+        if (LaunchAction.WasPressedThisFrame() && shotTimer <= 0)
+        {
+            Launch();
+            shotTimer = timeBetweenShots; // Запуск перезарядки
         }
     }
 
@@ -48,7 +85,6 @@ public class PlayerController : MonoBehaviour
 
     public void ChangeHealth(int amount)
     {
-        // Якщо шкода (amount < 0) і гравець уже невразливий — ігноруємо
         if (amount < 0)
         {
             if (isInvincible)
@@ -57,10 +93,29 @@ public class PlayerController : MonoBehaviour
             }
             isInvincible = true;
             damageCooldown = timeInvincible;
+            if (animator != null)
+            {
+                animator.SetTrigger("Hit");
+            }
         }
 
-        // Обмеження значень здоров'я у діапазоні [0, maxHealth]
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
         Debug.Log(currentHealth + "/" + maxHealth);
+    }
+
+    void Launch()
+    {
+        GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
+        Projectile projectile = projectileObject.GetComponent<Projectile>();
+        
+        if (projectile != null)
+        {
+            projectile.Launch(moveDirection, 300);
+        }
+
+        if (animator != null)
+        {
+            animator.SetTrigger("Launch");
+        }
     }
 }
