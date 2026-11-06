@@ -5,6 +5,7 @@ public class PlayerController : MonoBehaviour
 {
     public InputAction MoveAction;
     public InputAction LaunchAction;
+    public InputAction TalkAction; // Дія для розмови з NPC (клавіша X)
 
     public float speed = 3.0f;
     public int maxHealth = 5;
@@ -22,6 +23,9 @@ public class PlayerController : MonoBehaviour
     bool isInvincible;
     float damageCooldown;
 
+    // Зберігаємо посилання на останнього NPC, біля якого стоїть робот, щоб ховати бульбашку
+    private NonPlayerCharacter lastNonPlayerCharacter;
+
     // Таймер затримки між пострілами (ДЗ)
     public float timeBetweenShots = 0.5f;
     float shotTimer;
@@ -30,6 +34,7 @@ public class PlayerController : MonoBehaviour
     {
         MoveAction.Enable();
         LaunchAction.Enable();
+        TalkAction.Enable(); // Увімкнення дії розмови
 
         rigidbody2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -75,6 +80,40 @@ public class PlayerController : MonoBehaviour
             Launch();
             shotTimer = timeBetweenShots; // Запуск перезарядки
         }
+
+        // --- ПЕРЕВІРКА ПРОМІНЕМ (RAYCAST) ДЛЯ NPC ---
+        RaycastHit2D hit = Physics2D.Raycast(
+            rigidbody2d.position + Vector2.up * 0.2f,
+            moveDirection, 1.5f, LayerMask.GetMask("NPC"));
+
+        if (hit.collider != null)
+        {
+            NonPlayerCharacter npc = hit.collider.GetComponent<NonPlayerCharacter>();
+            if (npc != null)
+            {
+                // 1. Показуємо хмарку "Press X" над головою, коли підійшли
+                if (npc.dialogueBubble != null)
+                {
+                    npc.dialogueBubble.SetActive(true);
+                }
+                lastNonPlayerCharacter = npc;
+            }
+            
+            // 2. Перевіряємо натискання клавіші X для відкриття діалогу внизу
+            FindFriend(); 
+        }
+        else
+        {
+            // Ховаємо хмарку "Press X", коли гравець відійшов від NPC
+            if (lastNonPlayerCharacter != null)
+            {
+                if (lastNonPlayerCharacter.dialogueBubble != null)
+                {
+                    lastNonPlayerCharacter.dialogueBubble.SetActive(false);
+                }
+                lastNonPlayerCharacter = null;
+            }
+        }
     }
 
     void FixedUpdate()
@@ -100,7 +139,11 @@ public class PlayerController : MonoBehaviour
         }
 
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
-        Debug.Log(currentHealth + "/" + maxHealth);
+        
+        if (UIHandler.instance != null)
+        {
+            UIHandler.instance.SetHealthValue(currentHealth / (float)maxHealth);
+        }
     }
 
     void Launch()
@@ -116,6 +159,18 @@ public class PlayerController : MonoBehaviour
         if (animator != null)
         {
             animator.SetTrigger("Launch");
+        }
+    }
+
+    void FindFriend()
+    {
+        // Велике вікно відкривається СУВОРО за натисканням клавіші X у цей кадр
+        if (TalkAction.WasPressedThisFrame())
+        {
+            if (UIHandler.instance != null)
+            {
+                UIHandler.instance.DisplayDialogue();
+            }
         }
     }
 }

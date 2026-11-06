@@ -1,0 +1,10 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="NPCDialogue" src="project://database/Assets/NPCDialogue.uxml?fileID=9197481963319205126&amp;guid=fa1c25c83fc881944b6eeff6351805e2&amp;type=3#NPCDialogue"/>
+    <ui:VisualElement name="HealthBarBackground" style="flex-grow: 0; background-image: url(&quot;project://database/Assets/_2DAdventureGame/Art/Ducko/UI/UIHealthFrame.png?fileID=2800000&amp;guid=b47cdbd2062c5e64ba5a0bf3f6b045b1&amp;type=3#UIHealthFrame&quot;); -unity-background-scale-mode: scale-to-fit; width: 418px; height: 258px; position: relative;">
+        <ui:VisualElement name="CharacterPortrait" style="flex-grow: 1; -unity-background-scale-mode: scale-to-fit; position: absolute; background-image: url(&quot;project://database/Assets/_2DAdventureGame/Art/Ducko/UI/CharacterPortrait.png?fileID=2800000&amp;guid=0332b35b8fe3cf8458eb0558889493d1&amp;type=3#CharacterPortrait&quot;); top: 51px; left: -47px; right: 201px; bottom: 55px;"/>
+    </ui:VisualElement>
+    <ui:VisualElement name="HealthBarContainer" style="flex-grow: 1; position: absolute; height: 63px; width: 237px; top: 91px; left: 171px;">
+        <ui:VisualElement name="HealthBar" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/_2DAdventureGame/Art/Ducko/UI/UIHealthBar.png?fileID=2800000&amp;guid=39fe000f2b6d9d04b93d6a76310e29aa&amp;type=3#UIHealthBar&quot;);"/>
+    </ui:VisualElement>
+    <ui:Instance template="NPCDialogue" style="position: absolute; top: 70%; left: 10%; right: 10%; bottom: 0%; -unity-text-align: middle-center; font-size: 32px; white-space: nowrap; -unity-text-auto-size: none; -unity-text-generator: standard;"/>
+</ui:UXML>

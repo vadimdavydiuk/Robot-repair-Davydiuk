@@ -1,0 +1,5 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="Background" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/_2DAdventureGame/Art/Ducko/UI/UIDialogueBox.png?fileID=2800000&amp;guid=924827a9385ec3544b572966c8853b0a&amp;type=3#UIDialogueBox&quot;); background-color: rgba(125, 125, 125, 0);">
+        <ui:Label text="Привіт, роботе! Почни лагодити інших роботів навколо!&#10;" data-source-path="" style="-unity-font-style: normal; padding-top: 25px; padding-right: 25px; padding-bottom: 25px; padding-left: 25px; height: 445px; width: 1156px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; font-size: 32px; align-content: flex-start; -unity-text-align: middle-center;"/>
+    </ui:VisualElement>
+</ui:UXML>
