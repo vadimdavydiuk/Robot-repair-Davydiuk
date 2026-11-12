@@ -1,0 +1,16 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:Style src="MainMenu.uss" />
+    <ui:VisualElement class="background" picking-mode="Ignore" />
+    <ui:VisualElement class="menu">
+        <ui:VisualElement class="title" picking-mode="Ignore" />
+        <ui:Label text="Майстерня роботів" class="subtitle" />
+        <ui:VisualElement class="card">
+            <ui:Label text="Полагодь усіх роботів і збережи здоров’я." class="goal" />
+            <ui:Label text="WASD / стрілки — рух&#10;C — ремонтний снаряд&#10;X — поговорити з NPC" class="instructions" />
+            <ui:Button name="StartButton" text="ГРАТИ" class="menu-button" />
+            <ui:Button name="QuitButton" text="ВИЙТИ" class="menu-button" />
+        </ui:VisualElement>
+        <ui:Label text="Вадим Давидюк · v1.0" class="credits" />
+    </ui:VisualElement>
+</ui:UXML>
+

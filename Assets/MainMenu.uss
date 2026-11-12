@@ -1,0 +1,11 @@
+.background { position: absolute; left: 0; right: 0; top: 0; bottom: 0; background-image: url("project://database/Assets/_2DAdventureGame/Tutorial_Demo/Demo_Art/Common/Background.png"); -unity-background-scale-mode: scale-and-crop; }
+.menu { flex-grow: 1; align-items: center; justify-content: center; }
+.title { width: 760px; height: 170px; background-image: url("project://database/Assets/_2DAdventureGame/Tutorial_Demo/Demo_Art/Common/Title.png?fileID=-5392625257635239999&guid=772a6fef6bd2cbe4d834ddf1b135c591&type=3#Untitled-2_0"); -unity-background-scale-mode: scale-to-fit; }
+.subtitle { color: white; font-size: 40px; -unity-font-style: bold; margin-bottom: 16px; }
+.card { width: 900px; padding: 36px 70px; background-image: url("project://database/Assets/_2DAdventureGame/Art/Ducko/UI/UIDialogueBox.png"); align-items: stretch; }
+.goal { font-size: 32px; color: #172b3a; -unity-font-style: bold; -unity-text-align: middle-center; white-space: normal; }
+.instructions { color: #172b3a; font-size: 28px; -unity-text-align: middle-center; white-space: normal; margin-top: 18px; margin-bottom: 20px; }
+.menu-button { height: 66px; margin: 8px 100px; font-size: 30px; -unity-font-style: bold; background-color: #2c5765; color: white; border-color: #80c7d3; border-width: 2px; }
+.menu-button:hover { background-color: #3c7887; }
+.menu-button:focus { border-color: #f9dd7a; }
+.credits { color: white; font-size: 24px; margin-top: 20px; }
