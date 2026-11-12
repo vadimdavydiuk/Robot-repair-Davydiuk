@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -24,12 +25,17 @@ public class PlayerController : MonoBehaviour
     float damageCooldown;
     float shotTimer;
     NonPlayerCharacter nearbyNPC;
+    SpriteRenderer spriteRenderer;
+    Color normalColor;
+    Coroutine flash;
 
     void Awake()
     {
         body = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         currentHealth = maxHealth;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null) normalColor = spriteRenderer.color;
     }
     void OnEnable()
     {
@@ -76,13 +82,27 @@ public class PlayerController : MonoBehaviour
     public void ChangeHealth(int amount)
     {
         if (controlsLocked || currentHealth <= 0 || (amount < 0 && damageCooldown > 0)) return;
+        int nextHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+        if (nextHealth == currentHealth) return;
         if (amount < 0)
         {
             damageCooldown = timeInvincible;
             if (animator != null && animator.runtimeAnimatorController != null) animator.SetTrigger("Hit");
         }
-        currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+        currentHealth = nextHealth;
+        var audio = GameAudio.instance;
+        if (audio != null) audio.Play(amount < 0 ? audio.hit : audio.heal);
+        if (flash != null) StopCoroutine(flash);
+        flash = StartCoroutine(Flash(amount < 0 ? new Color(1, 0.35f, 0.3f) : new Color(0.4f, 1, 0.65f)));
         UIHandler.instance?.SetHealthValue(currentHealth / (float)maxHealth);
+    }
+    IEnumerator Flash(Color color)
+    {
+        if (spriteRenderer == null) yield break;
+        spriteRenderer.color = color;
+        yield return new WaitForSeconds(0.16f);
+        spriteRenderer.color = normalColor;
+        flash = null;
     }
     public void LockControls()
     {
@@ -94,6 +114,8 @@ public class PlayerController : MonoBehaviour
     {
         var obj = Instantiate(projectilePrefab, body.position + Vector2.up * 0.5f, Quaternion.identity);
         obj.GetComponent<Projectile>().Launch(moveDirection, projectileForce);
+        var audio = GameAudio.instance;
+        if (audio != null) audio.Play(audio.launch);
         if (animator != null && animator.runtimeAnimatorController != null) animator.SetTrigger("Launch");
     }
 }

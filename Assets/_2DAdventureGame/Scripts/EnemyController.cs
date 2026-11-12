@@ -81,6 +81,8 @@ public class EnemyController : MonoBehaviour
     {
         if (!broken) return;
         broken = false;
+        var audio = GameAudio.instance;
+        if (audio != null) audio.Play(audio.repair);
         rigidbody2d.simulated = false; // Вимикаємо фізику та тригери
         if (animator != null)
         {

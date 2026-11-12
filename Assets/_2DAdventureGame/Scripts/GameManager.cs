@@ -26,7 +26,13 @@ public class GameManager : MonoBehaviour
     {
         gameEnded = true; player.LockControls();
         foreach (var enemy in enemies) if (enemy != null) enemy.StopMoving();
-        if (won) uiHandler.DisplayWinScreen(); else uiHandler.DisplayLoseScreen();
+        if (won)
+        {
+            uiHandler.DisplayWinScreen();
+            var audio = GameAudio.instance;
+            if (audio != null) audio.Play(audio.victory);
+        }
+        else uiHandler.DisplayLoseScreen();
         StartCoroutine(Restart());
     }
     IEnumerator Restart()
