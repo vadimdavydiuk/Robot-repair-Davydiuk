@@ -1,0 +1,16 @@
+.health-frame { width: 346px; height: 165px; background-image: url("project://database/Assets/_2DAdventureGame/Art/Ducko/UI/UIHealthFrame.png"); -unity-background-scale-mode: scale-to-fit; }
+.health-container { position: absolute; left: 144px; top: 52px; width: 189px; height: 52px; }
+.health-bar { width: 100%; height: 100%; background-image: url("project://database/Assets/_2DAdventureGame/Art/Ducko/UI/UIHealthBar.png"); -unity-background-scale-mode: stretch-to-fill; }
+.portrait { position: absolute; left: 6px; top: 12px; width: 129px; height: 135px; background-image: url("project://database/Assets/_2DAdventureGame/Art/Ducko/UI/CharacterPortrait.png"); -unity-background-scale-mode: scale-to-fit; }
+.counter-frame { position: absolute; right: 10px; top: 30px; width: 300px; height: 100px; background-image: url("project://database/Assets/_2DAdventureGame/Art/UICounterBar.png"); -unity-background-scale-mode: scale-to-fit; }
+.counter { flex-grow: 1; color: white; font-size: 36px; -unity-font-style: bold; -unity-text-align: middle-center; padding-left: 70px; }
+.switch-timer { position: absolute; left: 36%; top: 28px; color: white; font-size: 28px; -unity-font-style: bold; }
+.dialogue-slot { position: absolute; left: 10%; right: 10%; top: 70%; bottom: 0; }
+.dialogue { display: none; flex-grow: 1; width: 100%; height: 100%; background-image: url("project://database/Assets/_2DAdventureGame/Art/Ducko/UI/UIDialogueBox.png"); }
+.dialogue-text { width: 100%; height: 100%; padding: 30px 40px; color: #172b3a; font-size: 32px; white-space: normal; -unity-font-style: bold; }
+.end-slot, .end-screen { position: absolute; top: 0; right: 0; bottom: 0; left: 0; }
+.end-screen { opacity: 0; background-color: black; transition-duration: 1s; }
+.end-image { flex-grow: 1; -unity-background-scale-mode: scale-to-fit; }
+.win-image { background-image: url("project://database/Assets/_2DAdventureGame/Tutorial_Demo/Demo_Art/Common/WinScreen.png?fileID=-848381713617584042&guid=d46766d63d5ca44c6b1a4d318b1eaf72&type=3#WinScreen_0"); }
+.lose-image { background-image: url("project://database/Assets/_2DAdventureGame/Tutorial_Demo/Demo_Art/Common/LoseScreen.png"); }
+

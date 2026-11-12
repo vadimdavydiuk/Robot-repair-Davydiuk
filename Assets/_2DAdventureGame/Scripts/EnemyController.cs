@@ -13,6 +13,8 @@ public class EnemyController : MonoBehaviour
     float timer;
     int direction = 1;
     bool broken = true;
+    bool stopped;
+    public bool isBroken => broken;
 
     void Start()
     {
@@ -35,7 +37,7 @@ public class EnemyController : MonoBehaviour
     void FixedUpdate()
     {
         // Якщо ворог полагоджений — зупиняємо рух
-        if (!broken)
+        if (!broken || stopped)
         {
             return;
         }
@@ -68,7 +70,7 @@ public class EnemyController : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         PlayerController player = other.gameObject.GetComponent<PlayerController>();
-        if (player != null)
+        if (player != null && broken && !stopped)
         {
             player.ChangeHealth(-1);
         }
@@ -77,11 +79,18 @@ public class EnemyController : MonoBehaviour
     // Метод ремонту ворога
     public void Fix()
     {
+        if (!broken) return;
         broken = false;
         rigidbody2d.simulated = false; // Вимикаємо фізику та тригери
         if (animator != null)
         {
             animator.SetTrigger("Fixed");
         }
+    }
+
+    public void StopMoving()
+    {
+        stopped = true;
+        rigidbody2d.linearVelocity = Vector2.zero;
     }
 }

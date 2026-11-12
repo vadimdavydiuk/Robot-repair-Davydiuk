@@ -111,84 +111,84 @@ MonoBehaviour:
     m_Name: Move
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 25ad221e-378e-477f-8613-6fd8486bc267
+    m_Id: c39a6d76-f606-41a3-9109-17681dd67d39
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings:
-    - m_Name: 2D Vector
-      m_Id: 89affcc3-f52f-49c4-a853-13d8602686fe
+    - m_Name: 2DVector
+      m_Id: 1cb380b8-adf1-4dca-96ea-5a40b35826bb
       m_Path: 2DVector
       m_Interactions: 
       m_Processors: 
       m_Groups: 
       m_Action: Move
       m_Flags: 4
-    - m_Name: up
-      m_Id: 24148800-4f77-4809-8acc-721bfc14bd1f
+    - m_Name: Up
+      m_Id: d0ee80a0-8993-465c-8548-94dd2e28b55c
       m_Path: <Keyboard>/w
       m_Interactions: 
       m_Processors: 
       m_Groups: 
       m_Action: Move
       m_Flags: 8
-    - m_Name: down
-      m_Id: 9d206294-2e53-4bac-9864-571bfdac28ec
+    - m_Name: Down
+      m_Id: dea3837c-4808-41fb-85bf-9fc61ac33ea8
       m_Path: <Keyboard>/s
       m_Interactions: 
       m_Processors: 
       m_Groups: 
       m_Action: Move
       m_Flags: 8
-    - m_Name: left
-      m_Id: f8de8837-cf70-44a0-b261-ffdb06e29222
+    - m_Name: Left
+      m_Id: 7e2e2f16-aa92-4978-88f2-2e72a4bd1f15
       m_Path: <Keyboard>/a
       m_Interactions: 
       m_Processors: 
       m_Groups: 
       m_Action: Move
       m_Flags: 8
-    - m_Name: right
-      m_Id: 7ba36a0e-3d82-490a-9dee-d4e132857e98
+    - m_Name: Right
+      m_Id: 3f78d180-0e77-4252-9785-e868be349cc4
       m_Path: <Keyboard>/d
       m_Interactions: 
       m_Processors: 
       m_Groups: 
       m_Action: Move
       m_Flags: 8
-    - m_Name: 2D Vector
-      m_Id: fd7d1223-6bca-4ec5-ae83-36050da4b6b3
+    - m_Name: 2DVector
+      m_Id: f03b1639-7745-4402-a343-3ae28241880d
       m_Path: 2DVector
       m_Interactions: 
       m_Processors: 
       m_Groups: 
       m_Action: Move
       m_Flags: 4
-    - m_Name: up
-      m_Id: 82c592cc-051c-4edd-91e1-eeb76746fa7b
+    - m_Name: Up
+      m_Id: 0fb94bea-7658-44dd-a8a8-e22f6c90e7a3
       m_Path: <Keyboard>/upArrow
       m_Interactions: 
       m_Processors: 
       m_Groups: 
       m_Action: Move
       m_Flags: 8
-    - m_Name: down
-      m_Id: 995dcfdd-70cb-402f-811c-dd065e0542f5
+    - m_Name: Down
+      m_Id: b34ade02-fb4c-4f19-aa03-cf240c7f7b52
       m_Path: <Keyboard>/downArrow
       m_Interactions: 
       m_Processors: 
       m_Groups: 
       m_Action: Move
       m_Flags: 8
-    - m_Name: left
-      m_Id: 77fdef87-302f-4733-a2ad-1f092ab8409f
+    - m_Name: Left
+      m_Id: ec539c4f-059e-48c2-85bb-c0ece9461958
       m_Path: <Keyboard>/leftArrow
       m_Interactions: 
       m_Processors: 
       m_Groups: 
       m_Action: Move
       m_Flags: 8
-    - m_Name: right
-      m_Id: 2fbbc33b-4a43-4563-9cc8-7ebfec600ff1
+    - m_Name: Right
+      m_Id: ea7a3226-c4c1-441c-aebd-71c69c21984d
       m_Path: <Keyboard>/rightArrow
       m_Interactions: 
       m_Processors: 
@@ -199,14 +199,14 @@ MonoBehaviour:
     m_Priority: 0
   LaunchAction:
     m_Name: Launch
-    m_Type: 0
+    m_Type: 1
     m_ExpectedControlType: 
-    m_Id: 7d6cb22d-7d5e-4d78-b63f-8ad36edd6587
+    m_Id: 4ab99533-9854-4b45-9f3c-38747336eb6f
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings:
     - m_Name: 
-      m_Id: 7158f235-4b5c-4146-8b25-e37fe148bb50
+      m_Id: 025ea7d7-6b72-4fdf-952d-f54bb119a5fa
       m_Path: <Keyboard>/c
       m_Interactions: 
       m_Processors: 
@@ -215,12 +215,32 @@ MonoBehaviour:
       m_Flags: 0
     m_Flags: 0
     m_Priority: 0
+  TalkAction:
+    m_Name: Talk
+    m_Type: 1
+    m_ExpectedControlType: 
+    m_Id: ab9352c4-0ef9-45f7-be96-9b8a7ac2bdc2
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 449f54a7-275c-4e68-bc84-3caf8ab2aede
+      m_Path: <Keyboard>/x
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Talk
+      m_Flags: 0
+    m_Flags: 0
+    m_Priority: 0
   speed: 3
   maxHealth: 5
   timeInvincible: 2
+  timeBetweenShots: 0.5
+  talkDistance: 1.5
+  projectileForce: 300
   projectilePrefab: {fileID: 6954366370014740962, guid: d9d12bf9fc320e64eadca3114a8ac19f,
     type: 3}
-  timeBetweenShots: 0.5
 --- !u!50 &8583107757169779435
 Rigidbody2D:
   serializedVersion: 5
@@ -244,7 +264,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
@@ -304,7 +324,7 @@ Animator:
   m_GameObject: {fileID: 3067291282325052029}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 34d36e1bead33a942930d6f3d41aa8fa, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

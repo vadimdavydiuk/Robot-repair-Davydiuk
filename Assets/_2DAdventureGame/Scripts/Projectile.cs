@@ -3,10 +3,12 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     Rigidbody2D rigidbody2d;
+    public float lifetime = 3f;
 
     void Awake()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
+        Destroy(gameObject, lifetime);
     }
 
     void Update()
@@ -25,11 +27,13 @@ public class Projectile : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.GetComponentInParent<PlayerController>() != null || other.GetComponent<Projectile>() != null) return;
         EnemyController enemy = other.GetComponent<EnemyController>();
         if (enemy != null)
         {
             enemy.Fix();
         }
+        else if (other.isTrigger) return;
         Destroy(gameObject);
     }
 

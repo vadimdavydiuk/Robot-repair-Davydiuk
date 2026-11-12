@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:Style src="GameUI.uss" />
+    <ui:VisualElement name="WinScreenContainer" class="end-screen" picking-mode="Ignore">
+        <ui:VisualElement name="WinScreen" class="end-image win-image" picking-mode="Ignore" />
+    </ui:VisualElement>
+    <ui:VisualElement name="LoseScreenContainer" class="end-screen" picking-mode="Ignore">
+        <ui:VisualElement name="LoseScreen" class="end-image lose-image" picking-mode="Ignore" />
+    </ui:VisualElement>
+</ui:UXML>
